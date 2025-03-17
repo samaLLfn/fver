@@ -1,0 +1,25 @@
+import base64
+import os
+
+# Specify the path to your .exe file
+file_path = r'c:\users\lowtaperfade\documents\fverlay.exe'
+
+# Get the path to the Documents folder
+documents_folder = os.path.expanduser('~\\Documents')  # This works for Windows
+
+# Open your .exe file in binary mode
+with open(file_path, 'rb') as exe_file:
+    # Read the file's content as binary
+    exe_data = exe_file.read()
+
+# Convert binary data to a base64 encoded string
+base64_string = base64.b64encode(exe_data).decode('utf-8')
+
+# Create a path for the output text file in the Documents folder
+output_file_path = os.path.join(documents_folder, 'base64_encoded_exe.txt')
+
+# Save the base64 string to the text file
+with open(output_file_path, 'w') as f:
+    f.write(base64_string)
+
+print(f"Base64 encoded .exe has been saved to '{output_file_path}'")
